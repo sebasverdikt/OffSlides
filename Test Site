@@ -103,7 +103,13 @@
                                 slide.removeAttribute('style');
                             }
                         });
+                        offBtns.querySelectorAll('button').forEach((button) => {
+                            button.disabled = false;
+                        });
                     }, 300);
+                    offBtns.querySelectorAll('button').forEach((button) => {
+                        button.disabled = true;
+                    });
                 break
                 case prevBtn:
                     activeSlide.style.transition = 'transform .3s ease-in';
@@ -123,7 +129,13 @@
                                 slide.removeAttribute('style');
                             }
                         });
+                        offBtns.querySelectorAll('button').forEach((button) => {
+                            button.disabled = false;
+                        });
                     }, 300);
+                    offBtns.querySelectorAll('button').forEach((button) => {
+                        button.disabled = true;
+                    });
                 break
                 case infoBtn:
             }      
