@@ -22,9 +22,9 @@
         </section>
 
         <div class="off-btns">
-            <button type="button" class="btn-off btn-clos tooltip" aria-label="Close"><span class="tooltiptext tt-d">Close project</span></button>
-            <button type="button" class="btn-off btn-next tooltip" aria-label="Next"><span class="tooltiptext">Next project</span></button>                   
-            <button type="button" class="btn-off btn-prev tooltip" aria-label="Previous"><span class="tooltiptext">Previous project</span></button>
+            <button type="button" class="btn-off btn-clos tooltip" aria-label="Close"><span class="tooltiptext tt-d">Close Slide</span></button>
+            <button type="button" class="btn-off btn-next tooltip" aria-label="Next"><span class="tooltiptext">Next Slide</span></button>                   
+            <button type="button" class="btn-off btn-prev tooltip" aria-label="Previous"><span class="tooltiptext">Previous Slide</span></button>
         </div>
 
         <section id="Offslides">
