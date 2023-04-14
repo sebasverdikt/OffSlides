@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="es">
+
+    <head>
+        <link rel="stylesheet" href="custom.css">
+    </head>
+
+    <body>
+
+        <section id="portfolio">
+                    <a class="flick" data-sbs-target="#off1" role="button">
+                        <div style="background-color:#282c38; height: 100px; width:100px"></div>
+                    </a>                  
+                    <a class="flick" data-sbs-target="#off2" role="button">
+                        <div style="background-color:#268f49; height: 100px; width:100px"></div>
+                    </a>                    
+                    <a class="flick" data-sbs-target="#off3" role="button">
+                        <div style="background-color:#e65ea8; height: 100px; width:100px"></div>
+                    </a>                    
+            </div>
+        </section>
+
+        <div class="off-btns">
+            <button type="button" class="btn-off btn-clos tooltip" aria-label="Close"><span class="tooltiptext tt-d">Close project</span></button>
+            <button type="button" class="btn-off btn-next tooltip" aria-label="Next"><span class="tooltiptext">Next project</span></button>                   
+            <button type="button" class="btn-off btn-prev tooltip" aria-label="Previous"><span class="tooltiptext">Previous project</span></button>
+        </div>
+
+        <section id="project-details">
+            <div class="offslide" id="off1">
+            </div>
+            <div class="offslide" id="off2">
+            </div>
+            <div class="offslide" id="off3">
+            </div>
+        </section>
+
+    <script>
+
+
+        const offSlides = document.querySelectorAll('.offslide')
+
+        const offBtns = document.querySelector('.off-btns')
+        const closBtn = offBtns.querySelector('.btn-clos')
+        const nextBtn = offBtns.querySelector('.btn-next')
+        const prevBtn = offBtns.querySelector('.btn-prev')
+        
+        const flickLinks = document.querySelectorAll('.flick');
+
+        flickLinks.forEach((flickLink) => {
+            flickLink.addEventListener('click', function(event) {
+                const slideId = this.getAttribute('data-sbs-target');
+                const activeSlide = document.querySelector(slideId);
+                const bgColor = window.getComputedStyle(this.querySelector('div')).backgroundColor;
+                activeSlide.classList.add('active');
+                activeSlide.style.backgroundColor = bgColor;
+                activeSlide.style.transform = 'translateY(-100%)';
+                activeSlide.style.visibility = 'visible';
+                setTimeout(() => {
+                    activeSlide.style.transition = 'transform .5s ease-out';
+                    activeSlide.style.transform = 'translateY(0%)';
+                }, 10);
+                offBtns.classList.add('on-btns')
+            });
+        });
+
+        offBtns.addEventListener('click', (event) => {
+            const activeSlide = document.querySelector('.active');
+            const nextSlide = activeSlide.nextElementSibling || activeSlide.parentElement.firstElementChild;
+            const prevSlide = activeSlide.previousElementSibling || activeSlide.parentElement.lastElementChild;  
+            const flickBg = document.querySelector(`a.flick[data-sbs-target="#${nextSlide.id}"]`) || document.querySelector(`a.flick[data-sbs-target="#${offSlides[0].id}"]`);
+            const bgColor = window.getComputedStyle(flickBg.querySelector('div')).backgroundColor; 
+            switch (event.target) {
+                case closBtn:
+                    activeSlide.style.transition = 'transform .5s ease-out';
+                    activeSlide.style.transform = 'translateY(-100%)'; 
+                    offBtns.classList.remove('on-btns');                   
+                    setTimeout(() => {
+                        activeSlide.style = ''
+                        activeSlide.classList.remove('active');
+                    }, 500);                    
+                break
+                case nextBtn:
+                    activeSlide.style.transition = 'transform .5s ease-in';
+                    activeSlide.style.transform = 'translateX(-100%)'; 
+                    nextSlide.style.transform = 'translateX(100%)';
+                    nextSlide.style.backgroundColor = bgColor;
+                    setTimeout(() => {
+                        nextSlide.style.visibility = 'visible';
+                        nextSlide.style.transition = 'transform .5s ease-out';
+                        nextSlide.style.transform = 'translateX(0%)';
+                        activeSlide.classList.remove('active');
+                        nextSlide.classList.add('active');
+                    }, 10);                      
+                    setTimeout(() => {                        
+                        prevSlide.style = '';
+                    }, 500);
+                break
+                case prevBtn:
+                    activeSlide.style.transition = 'transform .5s ease-in';
+                    activeSlide.style.transform = 'translateX(100%)'; 
+                    prevSlide.style.transform = 'translateX(-100%)';
+                    prevSlide.style.backgroundColor = bgColor;
+                    setTimeout(() => {
+                        prevSlide.style.visibility = 'visible';
+                        prevSlide.style.transition = 'transform .5s ease-out';
+                        prevSlide.style.transform = 'translateX(0%)';
+                        activeSlide.classList.remove('active');
+                        prevSlide.classList.add('active');
+                    }, 10);                      
+                    setTimeout(() => {                        
+                        nextSlide.style = '';
+                    }, 500);
+                break
+                case infoBtn:
+            }      
+        })
+
+
+
+
+    </script>
+    </body>
+
+</html>
