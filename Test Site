@@ -73,7 +73,7 @@
             switch (event.target) {
                 case closBtn:
                     activeSlide.style.transition = 'transform .5s ease-out';
-                    activeSlide.style.transform = 'translateY(-100%)'; 
+                    activeSlide.style.transform = 'translateY(100%)'; 
                     offBtns.classList.remove('on-btns');                   
                     setTimeout(() => {
                         activeSlide.style = ''
